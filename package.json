@@ -1,0 +1,18 @@
+{
+  "name": "ajirarovertest",
+  "version": "1.0.0",
+  "description": "Simulated Test Environment for Ajira Rover",
+  "main": "index.js",
+  "scripts": {
+    "devserver": "nodemon src/index.js"
+  },
+  "author": "M Manoji",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "yup": "^0.32.8"
+  }
+}
