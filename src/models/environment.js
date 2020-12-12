@@ -32,9 +32,53 @@ class Environment {
     return {
       temperature: this.temperature,
       humidity: this.humidity,
-      solarflare: this.solarFlare,
+      "solar-flare": this.solarFlare,
       storm: this.storm,
-      terrain: getTerainType(location),
+      terrain: this.getTerainType(location),
+    };
+  };
+
+  getEnvDetails = (currentPosition, direction) => {
+    let nextLocation = {};
+    switch (direction) {
+      case "up":
+        nextLocation.row = currentPosition.row - 1;
+        nextLocation.column = currentPosition.column;
+        break;
+      case "down":
+        nextLocation.row = currentPosition.row + 1;
+        nextLocation.column = currentPosition.column;
+        break;
+      case "left":
+        nextLocation.row = currentPosition.row;
+        nextLocation.column = currentPosition.column - 1;
+        break;
+      case "right":
+        nextLocation.row = currentPosition.row;
+        nextLocation.column = currentPosition.column + 1;
+        break;
+      default:
+        break;
+    }
+    if (
+      nextLocation.row < 0 ||
+      nextLocation.row >= this.areaMap.length ||
+      nextLocation.column < 0 ||
+      nextLocation.column >= this.areaMap[0].length
+    ) {
+      const error = new Error("Can move only within mapped area!");
+      error.statusCode = 428;
+      throw error;
+    }
+    console.log(nextLocation);
+
+    return {
+      nextLocation,
+      terrain: this.getTerainType(nextLocation),
+      solarFlare: this.solarFlare,
+      storm: this.storm,
+      temperature: this.temperature,
+      humidity: this.humidity,
     };
   };
 }

@@ -9,6 +9,7 @@ const {
 } = require("../schemas/environmentSchema");
 
 const Environment = require("../models/environment");
+const Rover = require("../models/rover");
 
 router.post(
   "/configure",
@@ -47,7 +48,17 @@ router.patch(
       //get the env and update
       let environment = Environment.ENVIRONMENT;
       environment.updateFields(req.body);
-      return res.status(202).send(environment);
+
+      if (Rover.ROVER) {
+        Rover.ROVER.envUpdated({
+          temperature: environment.temperature,
+          humidity: environment.humidity,
+          solarFlare: environment.solarFlare,
+          storm: environment.storm,
+        });
+      }
+
+      return res.status(200).send(environment);
     } catch (error) {
       error.statusCode = error.statusCode || 400;
       next(error);

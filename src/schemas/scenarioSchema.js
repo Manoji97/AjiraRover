@@ -21,7 +21,7 @@ const ScenarioConditionSchema = yup.object().shape({
 });
 
 const ScenarioRoverSchema = yup.object().shape({
-  is: yup.string().notRequired(),
+  is: yup.string().default(null).nullable(),
 
   performs: yup
     .object()
@@ -32,22 +32,25 @@ const ScenarioRoverSchema = yup.object().shape({
           type: yup.string(),
           qty: yup.number(),
         })
-        .notRequired(),
+        .default(null)
+        .nullable(),
       "item-usage": yup
         .object()
         .shape({
           type: yup.string(),
           qty: yup.number(),
         })
-        .notRequired(),
+        .default(null)
+        .nullable(),
     })
-    .optional(),
+    .default(null)
+    .nullable(),
 });
 
 const ScenarioSchema = yup.object().shape({
   name: yup.string().required(),
   conditions: yup.array().of(ScenarioConditionSchema).required(),
-  rover: yup.array().of(ScenarioRoverSchema).required(),
+  rover: ScenarioRoverSchema.required(),
 });
 
 module.exports = ScenarioSchema;

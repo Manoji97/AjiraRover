@@ -4,7 +4,7 @@ const router = new express.Router();
 const Rover = require("../models/rover");
 const Environment = require("../models/environment");
 
-router.get("environment/env", async (req, res, next) => {
+router.get("/environment/env", async (req, res, next) => {
   try {
     if (!Environment.ENVIRONMENT) {
       err = new Error("No Environments available!");
@@ -18,7 +18,7 @@ router.get("environment/env", async (req, res, next) => {
   }
 });
 
-router.get("rover/specs", async (req, res, next) => {
+router.get("/rover/specs", async (req, res, next) => {
   try {
     if (!Rover.ROVER) {
       err = new Error("No Rovers available!");
