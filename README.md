@@ -85,6 +85,31 @@ According to the Problem Statement the API exposes the Following **URLs**
     ```
 
 ### Areas of Improvements:
+Though this Project doesnt invlove any `DataBases` and no Asynchronous Process we can still improve the Architecture.
+
+- The **Inventory System**:
+    - Currently the Inventory system is Implemented using the simple `Array`.
+    - which pops the least priority item when inventory is full and removes the item if it is completely used.
+    - On each Item Addition the inventory loops and chooses its position to maintain the `Sorted` order.
+    - And unfortunately **Array Insertion and Removal is not O(n)**.
+
+    
+    >**Solution**: 
+        with much Clarity in the Problem Statement this,
+        the Simple Array can be replaced with complex DataStructures like 
+            - `Priority Queue`
+            - `Doubely Linked List`
+
+- The Scenario Test:
+    - With much more Detail in how the Scenarios are processed, A very better and efficient way of approch can be coded.
+
 
 
 ### Contact:
+For Queries you can reach out to me on:
+
+    Name:          M Manoji
+    Contact:       9739691005
+    Mail Id:       manoji1997m@gmail.com
+    Git Profile:   https://github.com/Manoji97/
+    Linked In:     
