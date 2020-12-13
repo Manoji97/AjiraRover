@@ -1,4 +1,4 @@
-##Ajira Rover Test Eimulation
+## Ajira Rover Test Eimulation
 
     - Description
     - Build Details
@@ -9,14 +9,14 @@
     - Areas of Improvements
     - Contact
 
-###Description:
+### Description:
 Ajira has developed a rover for extra-terrestrial exploration. It can be configured to act differently in different environments.Before sending it on a voyage, we need to simulate an extra-terrestrial environment and test the rover The rover consists of the following internal modules.
 
 
 > This Code is Developed from the Provided [Problem statement](https://cdn.skillenza.com/files/50311d7b-e4a7-4a4e-8be0-b5350326a467/ProblemStatement.pdf).
 
 
-###Build Details:
+### Build Details:
 
 This REST API is Completely developed with `nodejs` Backend using `express.js`.
 
@@ -26,7 +26,7 @@ I have added 2 modes of Installation for build.
     - Using node and npm
 
 
-#####1) Run Using Docker :
+##### 1) Run Using Docker :
 
 Please Follow the Instructions from the [Official Site](https://www.docker.com/products/docker-desktop) to Install `Docker` and `docker-compose`
 
@@ -37,7 +37,7 @@ docker-compose up
 ```
 this will expose the **API** at `http://localhost:8000/api`
 
-#####2) Build Using Nodejs:
+##### 2) Build Using Nodejs:
     
 Inorder to **Build** and **Test** this Project you will need to install `node` and `npm`.
 
@@ -57,7 +57,7 @@ Please Follow the Instructions from the `nodejs` from the [Official Site](https:
     ```
 this will expose the **API** at `http://localhost:8000/api`
 
-###Endpoints:
+### Endpoints:
 
 According to the Problem Statement the API exposes the Following **URLs**
 
@@ -84,7 +84,7 @@ According to the Problem Statement the API exposes the Following **URLs**
     -POST   http://localhost:8000/api/rover/status
     ```
 
-###Areas of Improvements:
+### Areas of Improvements:
 
 
-###Contact:
+### Contact:
