@@ -90,7 +90,7 @@ According to the Problem Statement the API exposes the Following **URLs**
     ```
  - To Get the Rover and Environment Status:
     ```Docker
-    -POST   http://localhost:8000/api/rover/status
+    -GET   http://localhost:8000/api/rover/status
     ```
 
 <a name="folder"></a>
@@ -143,8 +143,8 @@ Though this Project doesnt invlove any `DataBases` and no Asynchronous Process w
 ### Contact:
 For Queries you can reach out to me on:
 
-    Name:          M Manoji
-    Contact:       9739691005
-    Mail Id:       manoji1997m@gmail.com
-    Git Profile:   https://github.com/Manoji97/
-    Linked In:     
+- Name:          M Manoji
+- Contact:       9739691005
+- Mail Id:       manoji1997m@gmail.com
+- Git Profile:   https://github.com/Manoji97/
+- Linked In:     https://www.linkedin.com/in/manoji-m97/ 
