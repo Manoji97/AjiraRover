@@ -5,6 +5,8 @@
     - [Build Using docker](#docker)
     - [Build Using nodejs](#node)
 - [Endpoints](#endpoints)
+- [Folder Explained](#folder)
+- [Other Infos](#info)
 - [Areas of Improvements](#imrpovements)
 - [Contact](#contact)
 
@@ -90,6 +92,29 @@ According to the Problem Statement the API exposes the Following **URLs**
     ```Docker
     -POST   http://localhost:8000/api/rover/status
     ```
+
+<a name="folder"></a>
+
+### Folder Structure:
+
+The Folder Structure is expliained here for better readability
+
+![Folder Structure](./assets/folder_structure.png)
+
+- **constants** : folder stores the strings used in the project.
+- **helpers** : this folder holds the helper functions.
+- **middlewares** : holds the middleware codes for schema validation
+- **models** : holds the Business models and its logic.
+- **routes** : holds the Code each Route that are exposed.
+- **schemas** : has all the schemas required for validating the input JSON.
+- **index.js** : main sever definition file.  
+
+<a name="info"></a>
+
+### Other Infos:
+![change debug mode](./assets/docker-compose.png)
+
+To Turn off the Debug Mode in this Application **uncomment this line**
 
 <a name="imrpovements"></a>
 
