@@ -1,20 +1,22 @@
-## Ajira Rover Test Eimulation
+## Ajira Rover Test Simulation
 
-    - Description
-    - Build Details
-        - Build Using docker
-        - Build Using nodejs
-    - Endpoints
-    - Usage
-    - Areas of Improvements
-    - Contact
+- [Description](#description)
+- [Build Details](#build)
+    - [Build Using docker](#docker)
+    - [Build Using nodejs](#node)
+- [Endpoints](#endpoints)
+- [Areas of Improvements](#imrpovements)
+- [Contact](#contact)
+
+<a name="description"></a>
 
 ### Description:
-Ajira has developed a rover for extra-terrestrial exploration. It can be configured to act differently in different environments.Before sending it on a voyage, we need to simulate an extra-terrestrial environment and test the rover The rover consists of the following internal modules.
+Ajira has developed a rover for extra-terrestrial exploration. It can be configured to act differently in different environments. Before sending it on a voyage, we need to simulate an extra-terrestrial environment and test the rover The rover consists of the following internal modules.
 
 
 > This Code is Developed from the Provided [Problem statement](https://cdn.skillenza.com/files/50311d7b-e4a7-4a4e-8be0-b5350326a467/ProblemStatement.pdf).
 
+<a name="build"></a>
 
 ### Build Details:
 
@@ -25,6 +27,7 @@ I have added 2 modes of Installation for build.
     - Using Docker
     - Using node and npm
 
+<a name="docker"></a>
 
 ##### 1) Run Using Docker :
 
@@ -36,6 +39,8 @@ After Installing Docker and docker-compose move to the Project directory run the
 docker-compose up
 ```
 this will expose the **API** at `http://localhost:8000/api`
+
+<a name="node"></a>
 
 ##### 2) Build Using Nodejs:
     
@@ -56,6 +61,8 @@ Please Follow the Instructions from the `nodejs` from the [Official Site](https:
     npm run prodserver
     ```
 this will expose the **API** at `http://localhost:8000/api`
+
+<a name="endpoints"></a>
 
 ### Endpoints:
 
@@ -84,6 +91,8 @@ According to the Problem Statement the API exposes the Following **URLs**
     -POST   http://localhost:8000/api/rover/status
     ```
 
+<a name="imrpovements"></a>
+
 ### Areas of Improvements:
 Though this Project doesnt invlove any `DataBases` and no Asynchronous Process we can still improve the Architecture.
 
@@ -104,6 +113,7 @@ Though this Project doesnt invlove any `DataBases` and no Asynchronous Process w
     - With much more Detail in how the Scenarios are processed, A very better and efficient way of approch can be coded.
 
 
+<a name="contact"></a>
 
 ### Contact:
 For Queries you can reach out to me on:
