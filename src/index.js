@@ -4,9 +4,11 @@ const app = express();
 const port = process.env.PORT || 8000;
 app.use(express.json());
 
+console.log(process.env.DEBUG, process.env.PORT);
+
 const EnvironmentRouter = require("./routes/environmentRoutes");
 const RoverRouter = require("./routes/roverRoutes");
-const HelperRouter = require("./routes/helperRoutes");
+//const HelperRouter = require("./routes/helperRoutes");
 
 app.use("/api/environment", EnvironmentRouter);
 app.use("/api/rover", RoverRouter);
@@ -14,7 +16,9 @@ app.use("/api/rover", RoverRouter);
 
 app.use((error, req, res, next) => {
   console.log(error);
-  res.status(error.statusCode).send({ error: error.message });
+  const error_msg =
+    process.env.NODE_ENV !== "PRODUCTION" ? { error: error.message } : null;
+  res.status(error.statusCode).send(error_msg);
 });
 
 app.get("*", function (req, res) {

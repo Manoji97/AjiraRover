@@ -1,3 +1,6 @@
+const { ConstStrings, ErrorMessages } = require("../constants/constants");
+const ThrowError = require("../helpers/error");
+
 class Environment {
   static ENVIRONMENT = null;
   static FIELDNAMES = Object.freeze({
@@ -41,19 +44,19 @@ class Environment {
   getEnvDetails = (currentPosition, direction) => {
     let nextLocation = {};
     switch (direction) {
-      case "up":
+      case ConstStrings.DIRECTION.UP:
         nextLocation.row = currentPosition.row - 1;
         nextLocation.column = currentPosition.column;
         break;
-      case "down":
+      case ConstStrings.DIRECTION.DOWN:
         nextLocation.row = currentPosition.row + 1;
         nextLocation.column = currentPosition.column;
         break;
-      case "left":
+      case ConstStrings.DIRECTION.LEFT:
         nextLocation.row = currentPosition.row;
         nextLocation.column = currentPosition.column - 1;
         break;
-      case "right":
+      case ConstStrings.DIRECTION.RIGHT:
         nextLocation.row = currentPosition.row;
         nextLocation.column = currentPosition.column + 1;
         break;
@@ -66,9 +69,7 @@ class Environment {
       nextLocation.column < 0 ||
       nextLocation.column >= this.areaMap[0].length
     ) {
-      const error = new Error("Can move only within mapped area!");
-      error.statusCode = 428;
-      throw error;
+      ThrowError(428, ErrorMessages.OUT_OF_BOUNDRY);
     }
 
     return {

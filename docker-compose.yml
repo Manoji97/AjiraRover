@@ -3,5 +3,8 @@ version: '3.0'
 services:
   simulation_app:
     build: .
+    environment: 
+      - PORT=8000
+      - NODE_ENV=PRODUCTION
     ports: 
       - "8000:8000"

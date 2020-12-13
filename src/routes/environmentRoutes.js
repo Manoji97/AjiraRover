@@ -24,7 +24,7 @@ router.post(
         req.body["storm"],
         req.body["area-map"]
       );
-      return res.status(200).send(Environment.ENVIRONMENT);
+      return res.status(200).send();
     } catch (error) {
       error.statusCode = error.statusCode || 400;
       next(error);
@@ -56,7 +56,7 @@ router.patch(
         });
       }
 
-      return res.status(200).send(environment);
+      return res.status(200).send();
     } catch (error) {
       error.statusCode = error.statusCode || 400;
       next(error);

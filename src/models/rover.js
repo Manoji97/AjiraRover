@@ -1,4 +1,5 @@
-const Environment = require("./environment");
+const { ConstStrings, ErrorMessages } = require("../constants/constants");
+const ThrowError = require("../helpers/error");
 
 class Rover {
   static ROVER = null;
@@ -37,7 +38,7 @@ class Rover {
 
   loadStates = (stateList) => {
     for (const state of stateList) {
-      this.stateActions[state["name"]] = state.allowedActions;
+      this.stateActions[state.name] = state.allowedActions;
     }
   };
 
@@ -45,9 +46,9 @@ class Rover {
     for (const scenario of this.scenarios) {
       let conditionValidity = scenario.conditions.length > 0 ? true : false;
       for (const condition of scenario.conditions) {
-        if (condition.type === "rover") {
+        if (condition.type === ConstStrings.ROVER) {
           conditionValidity &= condition.getValidity(this[condition.property]);
-        } else if (condition.type === "environment") {
+        } else if (condition.type === ConstStrings.ENVIRONMENT) {
           if (envDetails[condition.property]) {
             conditionValidity &= condition.getValidity(
               envDetails[condition.property]
@@ -98,9 +99,7 @@ class Rover {
 
   move = (newEnvDetail) => {
     if (newEnvDetail.storm) {
-      const error = new Error("Cannot move during a storm!");
-      error.statusCode = 428;
-      throw error;
+      ThrowError(428, ErrorMessages.STORM_CANT_MOVE);
     }
 
     if (this.roverState !== "immobile") {
@@ -113,11 +112,8 @@ class Rover {
       this.location = newEnvDetail.nextLocation;
       this.checkScenarios(newEnvDetail);
     } else {
-      const error = new Error();
-      error.statusCode = 400;
-      throw error;
+      ThrowError(400, ErrorMessages.ROVER_BATTERY_LOW);
     }
-
     //check if battery is not low
     //check if possible to move
     //if possible update the location

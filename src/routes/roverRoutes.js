@@ -80,7 +80,7 @@ router.post("/configure", validateDTO(RoverSchema), async (req, res, next) => {
       rover.loadStates(req.body.states);
     }
 
-    res.status(200).send(Rover.ROVER);
+    res.status(200).send();
   } catch (error) {
     error.statusCode = error.statusCode || 500;
     next(error);
@@ -103,15 +103,13 @@ router.post("/move", validateDTO(DirectionSchema), async (req, res, next) => {
       req.body.direction
     );
 
-    rover.move(newEnvDetail);
-
     //get the details of Environment and the terrain type of next area and coordinates too
     //call move method in rover
+    rover.move(newEnvDetail);
 
-    res.status(200).send(req.body);
+    res.status(200).send();
   } catch (error) {
-    error.statusCode = error.statusCode || 500;
-    next(error);
+    res.status(error.statusCode || 400).send({ error: error.message });
   }
 });
 
