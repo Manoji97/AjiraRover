@@ -36,11 +36,8 @@ class Rover {
   };
 
   loadStates = (stateList) => {
-    console.log(stateList);
-
     for (const state of stateList) {
       this.stateActions[state["name"]] = state.allowedActions;
-      console.log(state["name"], state["allowedActions"]);
     }
   };
 
@@ -51,7 +48,6 @@ class Rover {
         if (condition.type === "rover") {
           conditionValidity &= condition.getValidity(this[condition.property]);
         } else if (condition.type === "environment") {
-          console.log(condition);
           if (envDetails[condition.property]) {
             conditionValidity &= condition.getValidity(
               envDetails[condition.property]
@@ -60,7 +56,6 @@ class Rover {
             conditionValidity = false;
           }
         }
-        console.log(conditionValidity);
       }
       if (conditionValidity) {
         if (scenario.rover.is) {
@@ -68,16 +63,10 @@ class Rover {
         } else if (scenario.rover.performs) {
           if (scenario.rover.performs["item-usage"]) {
             let numSheilds = scenario.rover.performs["item-usage"].qty;
-            for (let count = 0; count < numSheilds; count++) {
-              if (this.inventory.peak()) {
-                if (this.inventory.peak().type === "storm-shield") {
-                  this.inventory.popInventory();
-                } else {
-                  return false;
-                }
-              } else {
-                return false;
-              }
+            let invType = scenario.rover.performs["item-usage"].type;
+            let result = this.inventory.reduceCount(invType, numSheilds);
+            if (!result) {
+              return false;
             }
           }
           if (scenario.rover.performs["collect-sample"]) {

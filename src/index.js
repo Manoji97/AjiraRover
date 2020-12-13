@@ -10,7 +10,7 @@ const HelperRouter = require("./routes/helperRoutes");
 
 app.use("/api/environment", EnvironmentRouter);
 app.use("/api/rover", RoverRouter);
-app.use("/api", HelperRouter);
+//app.use("/api", HelperRouter);
 
 app.use((error, req, res, next) => {
   console.log(error);

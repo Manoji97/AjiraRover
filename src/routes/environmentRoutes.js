@@ -16,7 +16,6 @@ router.post(
   validateDTO(EnvironmentSchema),
   async (req, res, next) => {
     try {
-      console.log(req.body);
       //create a new environment
       new Environment(
         req.body["temperature"],
@@ -38,7 +37,6 @@ router.patch(
   validateDTO(EnvironmentUpdateSchema),
   async (req, res, next) => {
     try {
-      console.log(req.body);
       //check if Environment is already configured
       if (!Environment.ENVIRONMENT) {
         err = new Error("Create the Environment Before updating!");

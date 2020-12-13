@@ -8,7 +8,7 @@ const { RoverSchema, DirectionSchema } = require("../schemas/roverSchema");
 const Rover = require("../models/rover");
 const Environment = require("../models/environment");
 const Scenario = require("../models/scenario");
-const InventoryList = require("../models/inventory");
+const Inventory = require("../models/inventory");
 
 router.get("/status", async (req, res, next) => {
   try {
@@ -47,20 +47,26 @@ router.get("/status", async (req, res, next) => {
 
 router.post("/configure", validateDTO(RoverSchema), async (req, res, next) => {
   try {
+    let environment = Environment.ENVIRONMENT;
+
+    if (!environment) {
+      const error = new Error("No Environment Found!");
+      error.statusCode = 404;
+      throw error;
+    }
     //create scenarios list
     let scenarios = [];
     if (req.body.scenarios.length > 0) {
       scenarios = req.body.scenarios.map((scenario) => new Scenario(scenario));
     }
     //create inventory list
-    let inventory = new InventoryList();
+    let inventory = new Inventory(req.body.inventorySize);
     if (req.body.inventory.length > 0) {
       for (const inventory_item of req.body.inventory) {
         inventory.pushInventory(inventory_item);
       }
     }
     //create new Rover by  passing battery and inventory list
-    let environment = Environment.ENVIRONMENT;
     let rover = new Rover(
       req.body["initial-battery"],
       scenarios,

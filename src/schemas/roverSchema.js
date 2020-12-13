@@ -17,6 +17,7 @@ const RoverSchema = yup.object().shape({
   }),
   "initial-battery": yup.number().max(11).required(),
   inventory: yup.array().of(InventoryItemSchema).required(),
+  inventorySize: yup.number().default(10),
 });
 
 module.exports = { RoverSchema, DirectionSchema };

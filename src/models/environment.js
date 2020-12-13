@@ -70,7 +70,6 @@ class Environment {
       error.statusCode = 428;
       throw error;
     }
-    console.log(nextLocation);
 
     return {
       nextLocation,

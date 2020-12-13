@@ -7,7 +7,6 @@ class ScenarioCondition {
   }
 
   getValidity = (sceneValue) => {
-    console.log(this.value, sceneValue);
     switch (this.operator) {
       case "eq":
         return this.value === sceneValue;
