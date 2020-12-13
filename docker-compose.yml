@@ -5,6 +5,6 @@ services:
     build: .
     environment: 
       - PORT=8000
-      - NODE_ENV=PRODUCTION
+    #  - NODE_ENV=PRODUCTION
     ports: 
       - "8000:8000"
