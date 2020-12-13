@@ -4,7 +4,8 @@
   "description": "Simulated Test Environment for Ajira Rover",
   "main": "index.js",
   "scripts": {
-    "devserver": "nodemon src/index.js"
+    "devserver": "nodemon src/index.js",
+    "prodserver": "node src/index.js"
   },
   "author": "M Manoji",
   "license": "ISC",
