@@ -20,9 +20,18 @@ const ScenarioConditionSchema = yup.object().shape({
   value: yup.mixed(),
 });
 
+const performSchema = yup.object().shape({
+  name: yup.string(),
+  type: yup.string(),
+  qty: yup.number(),
+  batteryConsumption: yup.number().default(0),
+});
+
 const ScenarioRoverSchema = yup.object().shape({
   is: yup.string().default(null).nullable(),
 
+  performs: yup.array().of(performSchema).default(null).nullable(),
+  /*
   performs: yup
     .object()
     .shape({
@@ -31,6 +40,7 @@ const ScenarioRoverSchema = yup.object().shape({
         .shape({
           type: yup.string(),
           qty: yup.number(),
+          batteryConsumption: yup.number().default(0),
         })
         .default(null)
         .nullable(),
@@ -39,12 +49,14 @@ const ScenarioRoverSchema = yup.object().shape({
         .shape({
           type: yup.string(),
           qty: yup.number(),
+          batteryConsumption: yup.number().default(0),
         })
         .default(null)
         .nullable(),
     })
     .default(null)
     .nullable(),
+    */
 });
 
 const ScenarioSchema = yup.object().shape({

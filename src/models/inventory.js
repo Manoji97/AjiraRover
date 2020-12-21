@@ -17,11 +17,16 @@ class InventoryPriorityque {
     this.inventoryMaxSize = maximumSize;
   }
 
-  pushInventory({ type, quantity, priority }) {
+  pushInventory({ type, quantity, priority, batteryConsumption }) {
     if (this.inventoryList.length >= this.inventoryMaxSize) {
       this.dequeue();
     }
-    const new_inventory = new InventoryItem(type, quantity, priority);
+    const new_inventory = new InventoryItem(
+      type,
+      quantity,
+      priority,
+      batteryConsumption
+    );
     this.inventoryList.push(new_inventory);
 
     let currentIndex = this.inventoryList.length - 1;
@@ -138,6 +143,7 @@ class Inventory {
     if (inventory.quantity === 0) {
       this.inventoryList.splice(inventory_idx, 1);
     }
+
     return true;
   }
 }

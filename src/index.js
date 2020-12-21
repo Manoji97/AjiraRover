@@ -1,14 +1,29 @@
 const express = require("express");
+xmlparser = require("express-xml-bodyparser");
 
 const app = express();
 const port = process.env.PORT || 8000;
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(
+  xmlparser({
+    trim: true,
+    explicitArray: true,
+    normalize: false,
+  })
+);
 
 console.log(process.env.DEBUG, process.env.PORT);
+
+const HandleXML = require("./middlewares/handleXML");
 
 const EnvironmentRouter = require("./routes/environmentRoutes");
 const RoverRouter = require("./routes/roverRoutes");
 //const HelperRouter = require("./routes/helperRoutes");
+
+app.use("/api/xmltest", HandleXML, async (req, res, next) => {
+  console.log(req.body);
+});
 
 app.use("/api/environment", EnvironmentRouter);
 app.use("/api/rover", RoverRouter);

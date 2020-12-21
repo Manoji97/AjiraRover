@@ -42,6 +42,19 @@ class Rover {
     }
   };
 
+  performAction = ({ name, type, qty, batteryConsumption }) => {
+    if (batteryConsumption > this.battery) return false;
+    let result = false;
+    if (name === "item-usage") {
+      result = this.inventory.reduceCount(type, qty);
+    } else if (name === "collect-sample") {
+      result = this.inventory.pushInventory({ type: type, quantity: qty });
+    }
+
+    this.battery = Math.max(0, this.battery - batteryConsumption);
+    return result;
+  };
+
   checkScenarios = (envDetails) => {
     for (const scenario of this.scenarios) {
       let conditionValidity = scenario.conditions.length > 0 ? true : false;
@@ -62,21 +75,25 @@ class Rover {
         if (scenario.rover.is) {
           this.roverState = scenario.rover.is;
         } else if (scenario.rover.performs) {
-          if (scenario.rover.performs["item-usage"]) {
-            let numSheilds = scenario.rover.performs["item-usage"].qty;
-            let invType = scenario.rover.performs["item-usage"].type;
-            let result = this.inventory.reduceCount(invType, numSheilds);
-            if (!result) {
-              return false;
-            }
-          }
-          if (scenario.rover.performs["collect-sample"]) {
-            let type = scenario.rover.performs["collect-sample"].type;
-            let quantity = scenario.rover.performs["collect-sample"].qty;
-            this.inventory.pushInventory({ type, quantity });
+          for (const to_perform of scenario.rover.performs) {
+            return this.performAction(to_perform);
           }
         }
       }
+      /*
+      if (to_perform === "item-usage") {
+        return this.performAction(
+          "REMOVE_FROM_INVRNTORY",
+          scenario.rover.performs["item-usage"]
+        );
+      }
+      if (scenario.rover.performs["collect-sample"]) {
+        return this.performAction(
+          "INSERT_TO_INVENTORY",
+          scenario.rover.performs["collect-sample"]
+        );
+      }
+      */
     }
     return true;
   };
